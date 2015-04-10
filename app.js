@@ -18,6 +18,18 @@ app.use(morgan("dev")); // logs all requests
 /*********** End Setup **********/
 /*********** Authentication **********/
 
+passport.use(new facebookStrategy({
+    clientID: '1425278451107398',
+    clientSecret: '14aa8f22785ea663c617acb593412114',
+    callbackURL: "http://localhost:3000/"
+  },
+  function(accessToken, refreshToken, profile, done) {
+    // User.findOrCreate({}, function(err, user) {
+    //   if (err) { return done(err); }
+    //   done(null, user);
+    // });
+  }
+));
 
 
 /*********** End Authentication **********/
@@ -63,10 +75,23 @@ app.get("/", function (req, res) {
   res.send("Home");
 });
 
+// Redirect the user to Facebook for authentication.  When complete,
+// Facebook will redirect the user back to the application at
+//     /auth/facebook/callback
+app.get('/auth/facebook', passport.authenticate('facebook'));
+
+// Facebook will redirect the user to this URL after approval.  Finish the
+// authentication process by attempting to obtain an access token.  If
+// access was granted, the user will be logged in.  Otherwise,
+// authentication has failed.
+app.get('/auth/facebook/callback',
+  passport.authenticate('facebook', { successRedirect: '/',
+                                      failureRedirect: '/login' }));
+
 /*********** End Controllers **********/
 /*********** Server **********/
 
-var server = app.listen(3000, function () {
+var server = app.listen(3333, function () {
   var host = server.address().address;
   var port = server.address().port;
 
