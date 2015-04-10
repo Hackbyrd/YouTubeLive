@@ -1,0 +1,25 @@
+{
+  "name": "YouTubeLive",
+  "version": "1.0.0",
+  "description": "YouTube live comment streaming chrome plugin",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:Hackbyrd/YouTubeLive.git"
+  },
+  "author": "Jonathan Chen & Dan Maglasang",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Hackbyrd/YouTubeLive/issues"
+  },
+  "homepage": "https://github.com/Hackbyrd/YouTubeLive",
+  "dependencies": {
+    "express": "^4.12.3",
+    "mongoose": "^4.0.1",
+    "morgan": "^1.5.2",
+    "nodemon": "^1.3.7"
+  }
+}
